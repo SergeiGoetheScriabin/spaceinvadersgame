@@ -26,7 +26,22 @@ inline void gl_debug(const char *file, int line) {
     }
 }
 
+// if there is no error, undefine the error case and then start building the game.
+
 #undef GL_ERROR_CASE
+
+struct Buffer
+{
+    size_t width, height;
+    uint32_t* data;
+};
+
+struct Sprite
+{
+    size_t width, height;
+    uint8_t* data;
+};
+
 
 void validate_shader(GLuint shader, const char *file = 0){
     
@@ -66,17 +81,6 @@ void error_callback(int error, const char* description)
     fprintf(stderr, "Error: %s\n", description);
 }
 
-struct Buffer
-{
-    size_t width, height;
-    uint32_t* data;
-};
-
-struct Sprite
-{
-    size_t width, height;
-    uint8_t* data;
-};
 
 
 void buffer_draw_sprite(Buffer* buffer, const Sprite& sprite, size_t x, size_t y, uint32_t color)
@@ -223,8 +227,7 @@ int main(int argc, char* argv[])
     GLuint shader_id = glCreateProgram();
 
     {
-        // Create vertex shader
-        GLuint shader_vp = glCreateShader(GL_VERTEX_SHADER);
+        GLuint shader_vp = glCreateShader(GL_VERTEX_SHADER); // making a vertex shader
 
         glShaderSource(shader_vp, 1, &vertex_shader, 0);
         glCompileShader(shader_vp);
@@ -235,8 +238,7 @@ int main(int argc, char* argv[])
     }
 
     {
-        // Create fragment shader
-        GLuint shader_fp = glCreateShader(GL_FRAGMENT_SHADER);
+        GLuint shader_fp = glCreateShader(GL_FRAGMENT_SHADER); // making a fragment shader
 
         glShaderSource(shader_fp, 1, &fragment_shader, 0);
         glCompileShader(shader_fp);
