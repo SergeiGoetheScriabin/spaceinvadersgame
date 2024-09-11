@@ -11,10 +11,13 @@ Using `grep`, I was able to find the following:
 
 To compile my code, I use the following command:
 
+# Install GLFW and GLEW using Homebrew
+brew install glfw3 glew
+
+# Compile the C++ program
+
 ```sh
-g++ main.cpp -std=c++11 -o main \
-    -I/opt/homebrew/Cellar/glew/2.2.0_1/include \
-    -I/opt/homebrew/Cellar/glfw/3.4/include \
-    -L/opt/homebrew/Cellar/glew/2.2.0_1/lib \
-    -L/opt/homebrew/Cellar/glfw/3.4/lib \
-    -lglfw -lGLEW -framework OpenGL
+g++ main.cpp -std=c++11 -o main -I/opt/homebrew/Cellar/glew/2.2.0_1/include -I/opt/homebrew/Cellar/glfw/3.4/include -L/opt/homebrew/Cellar/glew/2.2.0_1/lib -L/opt/homebrew/Cellar/glfw/3.4/lib -lglfw -lGLEW -framework OpenGL
+
+
+
